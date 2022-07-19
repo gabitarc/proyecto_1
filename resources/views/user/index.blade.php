@@ -16,6 +16,16 @@
                                 {{ __('User') }}
                             </span>
 
+                            <div>
+                               <a href="{{ route('user.export-pdf') }}" class="btn btn-warning btn-sm "  data-placement="left">
+                                  {{ __('Exportar Pdf') }}
+                                </a>
+                                &nbsp;
+                                <a href="{{ route('user.export-excel') }}" class="btn btn-success btn-sm "  data-placement="left">
+                                  {{ __('Exportar Excel') }}
+                                </a>
+                            </div>
+
                              <div class="float-right">
                                 <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}

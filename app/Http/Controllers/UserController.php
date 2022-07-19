@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Models\User;
 use Illuminate\Http\Request;
+
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * Class UserController
@@ -120,4 +124,34 @@ class UserController extends Controller
         return view('user.procedure', compact('procedures'))
             ->with('i');
     }*/
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function exportPdf()
+    {
+
+        $users = User::all();
+
+        $data = [
+            'title' => 'Usuarios Activos',
+            'date' => date('m/d/Y'),
+            'users' => $users
+        ];
+
+        $pdf = Pdf::loadView('pdf.users', $data);
+
+        return $pdf->download('users.pdf');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function exportExcel()
+    {
+        $users = new UsersExport;
+        return Excel::download($users, 'users.xlsx');
+    }
 }

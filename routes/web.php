@@ -27,8 +27,8 @@ Auth::routes();
 
 Route::resource('user', UserController::class);
 Route::get('user.attend/{id}', [UserController::class, 'attend'])->name('user.attend');
+Route::get('user.export-pdf', [UserController::class, 'exportPdf'])->name('user.export-pdf');
+Route::get('user.export-excel', [UserController::class, 'exportExcel'])->name('user.export-excel');
 
 Route::resource('alumnos', AlumnoController::class);
 Route::resource('curso', CursoController::class);
-
-
